@@ -48,7 +48,7 @@ services:
     runtime: static
     rootDir: admin
     buildCommand: npm install && npm run build
-    staticPublishPath: ./admin/dist
+    staticPublishPath: dist
     envVars:
       - key: VITE_API_URL
         value: https://authorium-shop-api.onrender.com/api/v1
