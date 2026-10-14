@@ -16,6 +16,8 @@ import (
 )
 
 func corsMiddleware(next http.Handler) http.Handler {
+	allowedOrigins := strings.Split(os.Getenv("CORS_ALLOWED_ORIGINS"), ",")
+
 	return http.HandlerFunc(func(w http.ResponseWriter, r *http.Request) {
 		origin := r.Header.Get("Origin")
 		allowed := false
@@ -25,6 +27,12 @@ func corsMiddleware(next http.Handler) http.Handler {
 				strings.HasPrefix(origin, "http://localhost:") ||
 				strings.HasPrefix(origin, "http://127.0.0.1:") {
 				allowed = true
+			}
+			for _, allowedOrigin := range allowedOrigins {
+				if strings.TrimSpace(allowedOrigin) == origin {
+					allowed = true
+					break
+				}
 			}
 		}
 
@@ -72,8 +80,8 @@ func main() {
 	h := handlers.NewHandler(database, botToken)
 
 	// Rate limiters
-	loginLimiter := middleware.NewRateLimiter(15, 1*time.Minute)  // 15 login attempts per min
-	apiLimiter := middleware.NewRateLimiter(120, 1*time.Minute)   // 120 API calls per min
+	loginLimiter := middleware.NewRateLimiter(15, 1*time.Minute) // 15 login attempts per min
+	apiLimiter := middleware.NewRateLimiter(120, 1*time.Minute)  // 120 API calls per min
 
 	mux := http.NewServeMux()
 	mux.HandleFunc("GET /health", h.HealthCheck)

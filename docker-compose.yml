@@ -1,19 +1,4 @@
 services:
-  db:
-    image: postgres:16-alpine
-    restart: unless-stopped
-    environment:
-      POSTGRES_USER: ${POSTGRES_USER:?Set POSTGRES_USER in .env}
-      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in .env}
-      POSTGRES_DB: ${POSTGRES_DB:?Set POSTGRES_DB in .env}
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER} -d ${POSTGRES_DB}"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
-    volumes:
-      - postgres_data:/var/lib/postgresql/data
-
   backend:
     build:
       context: ./backend
@@ -23,12 +8,12 @@ services:
       - "${HOST_BIND_IP:-127.0.0.1}:${BACKEND_PORT:-8080}:8080"
     environment:
       PORT: "8080"
-      DATABASE_URL: ${DATABASE_URL:-postgres://${POSTGRES_USER}:${POSTGRES_PASSWORD}@db:5432/${POSTGRES_DB}?sslmode=disable}
-      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:?Set TELEGRAM_BOT_TOKEN in .env}
+      DATABASE_URL: ${DATABASE_URL:-/data/authorium.db?_journal_mode=WAL&_busy_timeout=5000&_foreign_keys=on}
+      TELEGRAM_BOT_TOKEN: ${TELEGRAM_BOT_TOKEN:-}
       WEBAPP_URL: ${WEBAPP_URL:-https://app.authorium.store}
-    depends_on:
-      db:
-        condition: service_healthy
+    volumes:
+      - backend_data:/data
+      - ./frontend/public/books:/app/books:ro
 
   frontend:
     build:
@@ -79,4 +64,4 @@ services:
       - landing
 
 volumes:
-  postgres_data:
+  backend_data:

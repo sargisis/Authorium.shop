@@ -92,7 +92,7 @@ cd authorium
 ```
 
 ### 2. Настройка переменных окружения
-Скопируйте шаблон и заполните боевые значения (пароли БД, токены бота):
+Скопируйте шаблон и укажите токен бота. Для Cloudflare Tunnel также укажите tunnel token:
 ```bash
 cp .env.example .env
 nano .env
@@ -110,13 +110,15 @@ docker compose up -d --build
 > - **Landing**: `127.0.0.1:3001` (`https://authorium.store`)
 > - **Backend API**: `127.0.0.1:8080` (`https://api.authorium.store`)
 > - **Admin Panel**: `127.0.0.1:8082` (`https://admin.authorium.store`)
-> - **PostgreSQL**: только внутренняя сеть Docker (порты наружу не публикуются)
+> - **SQLite**: файл базы хранится в Docker volume `backend_data`
 
 Cloudflare Tunnel не обязателен. Чтобы включить его, заполните `CLOUDFLARE_TUNNEL_TOKEN` в `.env` и запустите профиль:
 
 ```bash
 docker compose --profile cloudflare up -d --build
 ```
+
+Для текущего туннеля `authorium.store` этот профиль подключает `cloudflared` к локальным origin-портам `8080`, `3000`, `3001` и `8082`.
 
 В Cloudflare Zero Trust для этого Tunnel настройте Public Hostnames с такими origin-адресами:
 
@@ -127,7 +129,13 @@ docker compose --profile cloudflare up -d --build
 | `api.authorium.store` | `http://127.0.0.1:8080` |
 | `admin.authorium.store` | `http://127.0.0.1:8082` |
 
-`NEXT_PUBLIC_API_URL` и `VITE_API_URL` задаются при сборке образов, поэтому после их изменения пересоберите frontend и admin. Убедитесь, что в `.env` заполнены PostgreSQL-параметры и `TELEGRAM_BOT_TOKEN`.
+`NEXT_PUBLIC_API_URL` и `VITE_API_URL` задаются при сборке образов, поэтому после их изменения пересоберите frontend и admin. Backend использует SQLite в Docker volume `backend_data`.
+
+### Render Free (временный тест)
+
+В Render выберите **New → Blueprint**, подключите репозиторий и файл `render.yaml`. На первом создании Blueprint Render запросит `TELEGRAM_BOT_TOKEN`; введите его в Dashboard, не добавляя в Git. После изменений в коде потребуется commit и push в подключённую ветку.
+
+Free-сервисы могут засыпать после простоя, а backend использует временную SQLite-базу. Такой деплой подходит для проверки, но не для хранения реальных заказов.
 
 ### 4. Мониторинг и просмотр логов
 ```bash
@@ -138,7 +146,7 @@ docker compose logs -f
 docker compose logs -f backend
 docker compose logs -f frontend
 docker compose logs -f admin
-docker compose logs -f db
+docker compose logs -f cloudflared
 ```
 
 ### 5. Обновление и откат (Rollback)

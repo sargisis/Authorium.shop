@@ -9,7 +9,8 @@ RUN CGO_ENABLED=1 GOOS=linux go build -o server main.go
 FROM alpine:latest
 WORKDIR /app
 RUN apk --no-cache add ca-certificates \
-    && addgroup -S appgroup && adduser -S appuser -G appgroup
+    && addgroup -S appgroup && adduser -S appuser -G appgroup \
+    && mkdir /data && chown appuser:appgroup /data
 COPY --from=builder --chown=appuser:appgroup /app/server .
 USER appuser
 EXPOSE 8080
