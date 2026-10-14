@@ -8,13 +8,13 @@ export default function ContactPage() {
 
       <div className="legal-content">
         <p>
-          Authorium.shop-ը Հայաստանի հայերեն գրքերի առցանց խանութ է, որտեղ կարող եք գտնել էլեկտրոնային գրքեր և ընթերցել դրանք անմիջապես Telegram-ում։
+          Authorium.store-ը Հայաստանի հայերեն գրքերի առցանց խանութ է, որտեղ կարող եք գտնել էլեկտրոնային գրքեր և ընթերցել դրանք անմիջապես Telegram-ում։
         </p>
 
         <h2>Հիմնական կապեր</h2>
         <ul>
           <li><b>Telegram բոտ (24/7):</b> <a href="https://t.me/authorium_shop_bot" target="_blank" rel="noreferrer" style={{color: 'var(--primary)'}}>@authorium_shop_bot</a></li>
-          <li><b>Էլեկտրոնային փոստ:</b> <a href="mailto:info@authorium.shop" style={{color: 'var(--primary)'}}>info@authorium.shop</a></li>
+          <li><b>Էլեկտրոնային փոստ:</b> <a href="mailto:info@authorium.store" style={{color: 'var(--primary)'}}>info@authorium.store</a></li>
         </ul>
 
         <h2>Աշխատանքային ժամեր և պայմաններ</h2>

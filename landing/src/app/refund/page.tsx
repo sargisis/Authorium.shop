@@ -28,7 +28,7 @@ export default function RefundPage() {
 
         <h2>Ինչպե՞ս պահանջել վերադարձում</h2>
         <ol>
-          <li>Ուղարկեք հարցումը <b>info@authorium.shop</b> հասցեին կամ Telegram բոտին (@authorium_shop_bot)։</li>
+          <li>Ուղարկեք հարցումը <b>info@authorium.store</b> հասցեին կամ Telegram բոտին (@authorium_shop_bot)։</li>
           <li>Նշեք պատվերի ID-ն և վճարման ամսաթիվը։</li>
           <li>Նկարագրեք խնդիրը։</li>
         </ol>

@@ -44,7 +44,7 @@ export default function PrivacyPage() {
 
         <h2>5. Ձեր իրավունքները</h2>
         <p>
-          Դուք իրավունք ունեք ստանալ Ձեր տվյալների պատճենը, պահանջել դրանց փոփոխում կամ ջնջում։ Դիմումի համար գրեք <a href="mailto:info@authorium.shop" style={{color: 'var(--primary)'}}>info@authorium.shop</a> հասցեին։
+          Դուք իրավունք ունեք ստանալ Ձեր տվյալների պատճենը, պահանջել դրանց փոփոխում կամ ջնջում։ Դիմումի համար գրեք <a href="mailto:info@authorium.store" style={{color: 'var(--primary)'}}>info@authorium.store</a> հասցեին։
         </p>
       </div>
     </div>

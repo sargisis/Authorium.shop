@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width="200" height="300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="0%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a1a0d"/>
+      <stop offset="100%" style="stop-color:#1a3020"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="300" fill="url(#bg)"/>
+  <!-- mist -->
+  <ellipse cx="100" cy="220" rx="90" ry="30" fill="#2a5a30" opacity="0.3"/>
+  <ellipse cx="100" cy="240" rx="90" ry="20" fill="#1a3a20" opacity="0.4"/>
+  <!-- manor silhouette -->
+  <rect x="50" y="180" width="100" height="80" fill="#0d1a10"/>
+  <rect x="45" y="165" width="20" height="30" fill="#0d1a10"/>
+  <rect x="135" y="165" width="20" height="30" fill="#0d1a10"/>
+  <polygon points="45,165 55,145 65,165" fill="#0d1a10"/>
+  <polygon points="135,165 145,145 155,165" fill="#0d1a10"/>
+  <!-- ghost figure -->
+  <ellipse cx="100" cy="120" rx="12" ry="15" fill="#aaccaa" opacity="0.4"/>
+  <path d="M88,130 Q100,160 112,130" fill="#aaccaa" opacity="0.3"/>
+  <!-- text -->
+  <text x="100" y="60" font-family="Georgia,serif" font-size="9" fill="#66aa77" text-anchor="middle">ՊՏՈՒՏԱԿԻ</text>
+  <text x="100" y="78" font-family="Georgia,serif" font-size="14" fill="#88cc99" text-anchor="middle" font-weight="bold">ՇՐՋԱԴԱՐՁ</text>
+  <text x="100" y="96" font-family="Georgia,serif" font-size="8" fill="#446655" text-anchor="middle">Henry James</text>
+</svg>

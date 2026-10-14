@@ -1,0 +1,11 @@
+# Environment & Secrets
+.env*
+!.env.example
+
+# Databases & Logs
+*.db
+*.log
+
+# Compiled Binaries
+server
+authorium-backend

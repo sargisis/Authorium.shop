@@ -1,0 +1,67 @@
+@import "tailwindcss";
+
+:root {
+  --primary-yellow: #FFC800;
+  --primary-yellow-light: #FFDC33;
+  --accent-orange: #FF5722;
+  --accent-orange-hover: #E64A19;
+  --bg-white: #FFFFFF;
+  --text-primary: #1A1A1A;
+  --text-secondary: #757575;
+  --tag-bg: #FFF3C4;
+}
+
+html {
+  /* Prevent iOS from zooming on input focus */
+  -webkit-text-size-adjust: 100%;
+  touch-action: pan-y;
+}
+
+body {
+  background-color: var(--primary-yellow);
+  color: var(--text-primary);
+  font-family: 'Noto Sans Armenian', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  -webkit-tap-highlight-color: transparent;
+  user-select: none;
+  /* Prevent content shift when keyboard opens on iOS */
+  overflow-x: hidden;
+}
+
+/* Fix: iOS zooms when input font-size < 16px — force all inputs to 16px */
+input,
+select,
+textarea {
+  font-size: 16px !important;
+  /* Re-allow text selection inside inputs */
+  user-select: auto;
+  -webkit-user-select: auto;
+}
+
+/* Horizontal carousels — allow pan-x gesture through Telegram's touch capture */
+.carousel-swipe {
+  touch-action: pan-x !important;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+  cursor: grab;
+}
+.carousel-swipe:active {
+  cursor: grabbing;
+}
+
+/* Subtle grid pattern background matching the design */
+.bg-grid-pattern {
+  background-color: #FFC800;
+  background-image: 
+    linear-gradient(rgba(240, 185, 0, 0.4) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(240, 185, 0, 0.4) 1px, transparent 1px);
+  background-size: 20px 20px;
+}
+
+/* Hide scrollbar for neat horizontal book carousels */
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}

@@ -74,13 +74,13 @@ export default function RootLayout({
               <ul className="footer-links">
                 <li><Link href="/contact">Կոնտակտներ</Link></li>
                 <li><a href="https://t.me/authorium_shop_bot" target="_blank" rel="noreferrer">Telegram Bot</a></li>
-                <li><a href="mailto:info@authorium.shop">info@authorium.shop</a></li>
+                <li><a href="mailto:info@authorium.store">info@authorium.store</a></li>
               </ul>
             </div>
           </div>
 
           <div className="footer-bottom">
-            &copy; {new Date().getFullYear()} Authorium.shop (Ա/Ձ Գոռ Բաղդասարյան). Բոլոր իրավունքները պաշտպանված են:
+            &copy; {new Date().getFullYear()} Authorium.store (Ա/Ձ Գոռ Բաղդասարյան). Բոլոր իրավունքները պաշտպանված են:
           </div>
         </footer>
       </body>

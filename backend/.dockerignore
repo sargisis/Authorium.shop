@@ -1,0 +1,7 @@
+authorium.db
+*.log
+server
+authorium-backend
+.env
+.env.*
+.git

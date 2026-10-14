@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width="200" height="300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a0030"/>
+      <stop offset="100%" style="stop-color:#3d0070"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="300" fill="url(#bg)"/>
+  <!-- head silhouette with ego symbol -->
+  <circle cx="100" cy="120" r="45" fill="#220055"/>
+  <circle cx="100" cy="120" r="40" fill="none" stroke="#8855ff" stroke-width="2" opacity="0.6"/>
+  <!-- inner glow -->
+  <circle cx="100" cy="120" r="20" fill="#5500cc" opacity="0.5"/>
+  <text x="100" y="126" font-family="Georgia,serif" font-size="16" fill="#cc99ff" text-anchor="middle" font-weight="bold">EGO</text>
+  <!-- reflection lines -->
+  <line x1="40" y1="185" x2="160" y2="185" stroke="#6633cc" stroke-width="0.5" opacity="0.5"/>
+  <text x="100" y="215" font-family="Georgia,serif" font-size="26" fill="#aa77ff" text-anchor="middle" font-weight="bold">ԷԳՈ</text>
+  <text x="100" y="235" font-family="Georgia,serif" font-size="9" fill="#6644aa" text-anchor="middle">Ryan Holiday</text>
+</svg>

@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 300" width="200" height="300">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#1a1200"/>
+      <stop offset="100%" style="stop-color:#3d2a00"/>
+    </linearGradient>
+  </defs>
+  <rect width="200" height="300" fill="url(#bg)"/>
+  <!-- crown -->
+  <polygon points="70,120 80,95 100,110 120,95 130,120" fill="#c8a000"/>
+  <rect x="70" y="120" width="60" height="12" fill="#c8a000"/>
+  <circle cx="80" cy="97" r="4" fill="#ff4400"/>
+  <circle cx="100" cy="112" r="4" fill="#4444ff"/>
+  <circle cx="120" cy="97" r="4" fill="#00cc44"/>
+  <!-- decorative line -->
+  <rect x="30" y="155" width="140" height="2" fill="#c8a000" opacity="0.5"/>
+  <text x="100" y="185" font-family="Georgia,serif" font-size="22" fill="#ffd700" text-anchor="middle" font-weight="bold">ՏԻՐԱԿԱԼՈՒ</text>
+  <text x="100" y="205" font-family="Georgia,serif" font-size="10" fill="#aa8800" text-anchor="middle">Niccolo Machiavelli</text>
+  <rect x="30" y="215" width="140" height="2" fill="#c8a000" opacity="0.5"/>
+</svg>
