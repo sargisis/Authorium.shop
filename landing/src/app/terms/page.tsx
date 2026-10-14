@@ -44,7 +44,7 @@ export default function TermsPage() {
 
         <h2>6. Կոնտակտներ</h2>
         <p>
-          Հարցերի դեպքում կարող եք կապ հաստատել մեզ հետ <a href="mailto:info@authorium.store" style={{color: 'var(--primary)'}}>info@authorium.store</a> հասցեով։
+          Հարցերի դեպքում կարող եք կապ հաստատել մեզ հետ <a href="mailto:Authoriumbookshop@gmail.com" style={{color: 'var(--primary)'}}>Authoriumbookshop@gmail.com</a> հասցեով։
         </p>
       </div>
     </div>

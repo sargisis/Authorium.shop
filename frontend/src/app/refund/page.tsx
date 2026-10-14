@@ -118,7 +118,7 @@ export default function RefundPolicyPage() {
           <ol className="text-xs text-stone-600 leading-relaxed space-y-2">
             <li className="flex items-start gap-2">
               <span className="w-5 h-5 rounded-full bg-[#FF5722] text-white text-[10px] font-black flex items-center justify-center flex-shrink-0">1</span>
-              <span>Ուղարկեք հարցումը <b>info@authorium.store</b> հասցեին կամ Telegram բոտին՝ <b>@authorium_shop_bot</b></span>
+              <span>Ուղարկեք հարցումը <b>Authoriumbookshop@gmail.com</b> հասցեին կամ Telegram բոտին՝ <b>@authorium_shop_bot</b></span>
             </li>
             <li className="flex items-start gap-2">
               <span className="w-5 h-5 rounded-full bg-[#FF5722] text-white text-[10px] font-black flex items-center justify-center flex-shrink-0">2</span>
@@ -147,8 +147,8 @@ export default function RefundPolicyPage() {
           </div>
           <p className="text-xs text-stone-600">
             Հարցեր և բողոքներ՝
-            <a href="mailto:info@authorium.store" className="text-[#FF5722] font-bold underline">
-              info@authorium.store
+            <a href="mailto:Authoriumbookshop@gmail.com" className="text-[#FF5722] font-bold underline">
+              Authoriumbookshop@gmail.com
             </a>
             {' '}կամ Telegram-՝{' '}
             <a href="https://t.me/authorium_shop_bot" className="text-[#FF5722] font-bold underline">

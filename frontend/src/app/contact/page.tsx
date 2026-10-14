@@ -66,7 +66,7 @@ export default function ContactPage() {
 
           {/* Email */}
           <a
-            href="mailto:info@authorium.store"
+            href="mailto:Authoriumbookshop@gmail.com"
             className="bg-white rounded-2xl p-3.5 shadow-sm border border-[#ffea9f] flex items-center gap-3 hover:bg-stone-50 transition active:scale-95"
           >
             <div className="w-10 h-10 rounded-xl bg-[#FF5722] text-white flex items-center justify-center shadow">
@@ -74,7 +74,7 @@ export default function ContactPage() {
             </div>
             <div className="flex-1">
               <p className="text-xs font-black text-stone-900">Էլեկտրոնային փոստ (Email)</p>
-              <p className="text-[10px] text-[#FF5722] font-bold">info@authorium.store</p>
+              <p className="text-[10px] text-[#FF5722] font-bold">Authoriumbookshop@gmail.com</p>
               <p className="text-[9px] text-stone-400">Պատասխան՝ 1–3 աշխատաժամյա ընթացքում</p>
             </div>
             <span className="text-[10px] font-bold text-[#FF5722]">→</span>
@@ -165,7 +165,7 @@ export default function ContactPage() {
             <p>Հաշվեպահակում՝ ՀՀՀ (Գանձելությունները պահվում են բանկում)</p>
             <p>Վճարային միջոցներ՝ Ameriabank ՓԲԸ (VPOS)</p>
             <p>Հասցե՝ Հայաստանի Հանրապետություն, Երևան</p>
-            <p>Email: <a href="mailto:info@authorium.store" className="text-[#FF5722] underline">info@authorium.store</a></p>
+            <p>Email: <a href="mailto:Authoriumbookshop@gmail.com" className="text-[#FF5722] underline">Authoriumbookshop@gmail.com</a></p>
           </div>
 
           <div className="flex gap-2 mt-3 text-[10px] font-bold">

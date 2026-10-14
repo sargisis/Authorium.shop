@@ -153,8 +153,8 @@ export default function PrivacyPolicyPage() {
           </ul>
           <p className="text-xs text-stone-500 mt-2">
             Դիմումի համար գրեք. {' '}
-            <a href="mailto:info@authorium.store" className="text-[#FF5722] font-bold underline">
-              info@authorium.store
+            <a href="mailto:Authoriumbookshop@gmail.com" className="text-[#FF5722] font-bold underline">
+              Authoriumbookshop@gmail.com
             </a>
           </p>
         </div>
@@ -166,8 +166,8 @@ export default function PrivacyPolicyPage() {
           </div>
           <p className="text-xs text-stone-600">
             Սույն Գաղտնիության Քաղաքականությունը կարող է փոփոխվել։ Փոփոխությունների դեպքում կտեղեկացվեք Telegram բոտի՝ @authorium_shop_bot կամ {' '}
-            <a href="mailto:info@authorium.store" className="text-[#FF5722] font-bold underline">
-              info@authorium.store
+            <a href="mailto:Authoriumbookshop@gmail.com" className="text-[#FF5722] font-bold underline">
+              Authoriumbookshop@gmail.com
             </a>{' '}
             միջոցով։
           </p>

@@ -74,7 +74,7 @@ export default function RootLayout({
               <ul className="footer-links">
                 <li><Link href="/contact">Կոնտակտներ</Link></li>
                 <li><a href="https://t.me/authorium_shop_bot" target="_blank" rel="noreferrer">Telegram Bot</a></li>
-                <li><a href="mailto:info@authorium.store">info@authorium.store</a></li>
+                <li><a href="mailto:Authoriumbookshop@gmail.com">Authoriumbookshop@gmail.com</a></li>
               </ul>
             </div>
           </div>
