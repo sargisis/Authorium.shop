@@ -7,6 +7,7 @@ import (
 	"strings"
 	"time"
 
+	"authorium-backend/auth"
 	"authorium-backend/bot"
 	"authorium-backend/db"
 	"authorium-backend/handlers"
@@ -57,6 +58,7 @@ func corsMiddleware(next http.Handler) http.Handler {
 
 func main() {
 	_ = godotenv.Load()
+	auth.ConfigureJWTSecret(os.Getenv("JWT_SECRET"))
 
 	port := os.Getenv("PORT")
 	if port == "" {
@@ -88,7 +90,10 @@ func main() {
 	mux.HandleFunc("GET /api/v1/books", apiLimiter.LimitMiddleware(h.GetBooks))
 	mux.HandleFunc("GET /api/v1/books/{id}", apiLimiter.LimitMiddleware(h.GetBookByID))
 	mux.HandleFunc("GET /api/v1/categories", apiLimiter.LimitMiddleware(h.GetCategories))
-	mux.HandleFunc("POST /api/v1/auth/telegram", h.TelegramAuth)
+	mux.HandleFunc("POST /api/v1/auth/telegram", loginLimiter.LimitMiddleware(h.TelegramAuth))
+	mux.HandleFunc("POST /api/v1/auth/telegram/widget", loginLimiter.LimitMiddleware(h.TelegramWidgetAuth))
+	mux.HandleFunc("GET /api/v1/auth/me", h.TelegramMe)
+	mux.HandleFunc("POST /api/v1/auth/logout", h.TelegramLogout)
 	mux.HandleFunc("POST /api/v1/payments/process", apiLimiter.LimitMiddleware(h.ProcessPayment))
 
 	// Admin Auth with Rate Limiting

@@ -55,10 +55,43 @@ func (h *Handler) extractUserID(r *http.Request) int64 {
 	})
 	if err == nil && token.Valid {
 		if claims, ok := token.Claims.(*auth.Claims); ok {
-			return claims.UserID
+			if claims.TokenType == "admin" {
+				return claims.UserID
+			}
 		}
 	}
 	return 0
+}
+
+func (h *Handler) saveTelegramUser(user *auth.TelegramUserPayload) error {
+	_, err := h.DB.Exec(`
+		INSERT INTO telegram_users (telegram_id, first_name, last_name, username, photo_url, language_code)
+		VALUES (?, ?, ?, ?, ?, ?)
+		ON CONFLICT(telegram_id) DO UPDATE SET
+			first_name = excluded.first_name,
+			last_name = excluded.last_name,
+			username = excluded.username,
+			photo_url = excluded.photo_url,
+			language_code = excluded.language_code,
+			updated_at = CURRENT_TIMESTAMP
+	`, user.ID, user.FirstName, user.LastName, user.Username, user.PhotoURL, user.LangCode)
+	return err
+}
+
+func (h *Handler) issueTelegramSession(w http.ResponseWriter, user *auth.TelegramUserPayload) {
+	if err := h.saveTelegramUser(user); err != nil {
+		http.Error(w, `{"error":"Could not save Telegram profile"}`, http.StatusInternalServerError)
+		return
+	}
+	token, err := auth.GenerateTelegramJWT(user)
+	if err != nil {
+		http.Error(w, `{"error":"Could not create session"}`, http.StatusInternalServerError)
+		return
+	}
+	// Shared httpOnly cookie session: works both in the TG Mini App and on the website.
+	auth.SetTelegramAuthCookie(w, token)
+	w.Header().Set("Content-Type", "application/json")
+	_ = json.NewEncoder(w).Encode(map[string]interface{}{"token": token, "user": user})
 }
 
 func (h *Handler) GetBooks(w http.ResponseWriter, r *http.Request) {
@@ -158,20 +191,48 @@ func (h *Handler) TelegramAuth(w http.ResponseWriter, r *http.Request) {
 
 	tgUser, err := auth.ValidateTelegramInitData(initDataRaw, h.BotToken)
 	if err != nil || tgUser == nil {
-		tgUser = &auth.TelegramUserPayload{
-			ID:        123456789,
-			FirstName: "Guest",
-			Username:  "guest",
-			LangCode:  "hy",
-		}
+		http.Error(w, `{"error":"Invalid Telegram session"}`, http.StatusUnauthorized)
+		return
+	}
+	h.issueTelegramSession(w, tgUser)
+}
+
+func (h *Handler) TelegramWidgetAuth(w http.ResponseWriter, r *http.Request) {
+	var data auth.TelegramLoginWidgetData
+	if err := json.NewDecoder(r.Body).Decode(&data); err != nil {
+		http.Error(w, `{"error":"Invalid Telegram login payload"}`, http.StatusBadRequest)
+		return
+	}
+	user, err := auth.ValidateTelegramLoginWidget(data, h.BotToken)
+	if err != nil {
+		http.Error(w, `{"error":"Telegram login verification failed"}`, http.StatusUnauthorized)
+		return
+	}
+	h.issueTelegramSession(w, user)
+}
+
+func (h *Handler) TelegramMe(w http.ResponseWriter, r *http.Request) {
+	// Session comes from the shared httpOnly cookie (web + Mini App) or a Bearer token.
+	claims, err := auth.ExtractTelegramUserFromRequest(r)
+	if err != nil {
+		http.Error(w, `{"error":"Unauthorized"}`, http.StatusUnauthorized)
+		return
 	}
 
-	token, _ := auth.GenerateJWT(tgUser.ID, tgUser.Username)
+	var user auth.TelegramUserPayload
+	err = h.DB.Get(&user, `SELECT telegram_id AS id, first_name, last_name, username, photo_url, language_code FROM telegram_users WHERE telegram_id = ?`, claims.UserID)
+	if err != nil {
+		http.Error(w, `{"error":"Telegram profile not found"}`, http.StatusUnauthorized)
+		return
+	}
 	w.Header().Set("Content-Type", "application/json")
-	_ = json.NewEncoder(w).Encode(map[string]interface{}{
-		"token": token,
-		"user":  tgUser,
-	})
+	_ = json.NewEncoder(w).Encode(user)
+}
+
+func (h *Handler) TelegramLogout(w http.ResponseWriter, r *http.Request) {
+	auth.ClearTelegramAuthCookie(w)
+	w.Header().Set("Content-Type", "application/json")
+	_ = json.NewEncoder(w).Encode(map[string]bool{"success": true})
 }
 
 type ProcessPaymentRequest struct {

@@ -41,10 +41,10 @@ export default function HomePage() {
     : allBooks;
 
   return (
-    <div className="flex-1 flex flex-col">
+    <div className="store-home flex-1 flex flex-col">
       <Header />
 
-      <main className="px-4 py-2 flex flex-col gap-5">
+      <main className="home-main px-4 py-2 flex flex-col gap-5">
         {/* Search Bar matching mockup */}
         <div className="relative">
           <div className="absolute inset-y-0 left-3 flex items-center pointer-events-none text-stone-500">
@@ -152,7 +152,7 @@ export default function HomePage() {
             </Link>
           </div>
 
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
             {filteredBooks.map((book) => (
               <BookCard key={`all-home-${book.id}`} book={book} />
             ))}

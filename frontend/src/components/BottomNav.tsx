@@ -3,7 +3,7 @@
 import React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Home, Grid, Compass, Heart, User } from 'lucide-react';
+import { Home, Grid, Compass, Heart, User, Users } from 'lucide-react';
 import { useFavoritesStore } from '@/store';
 
 export default function BottomNav() {
@@ -21,13 +21,14 @@ export default function BottomNav() {
     { label: 'Գլխավոր', href: '/', icon: Home },
     { label: 'Կատեգորիաներ', href: '/categories', icon: Grid },
     { label: 'Բացահայտել', href: '/explore', icon: Compass },
+    { label: 'Հեղինակներ', href: '/authors', icon: Users },
     { label: 'Սիրվածներ', href: '/favorites', icon: Heart, badge: favoriteIds.length },
     { label: 'Պրոֆիլ', href: '/profile', icon: User },
   ];
 
   return (
-    <nav className="fixed bottom-0 left-0 right-0 z-50 max-w-md mx-auto bg-white border-t border-[#f0e3b6] px-4 py-2.5 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] rounded-t-3xl">
-      <div className="flex items-center justify-around">
+    <nav className="bottom-nav fixed bottom-0 left-0 right-0 z-50 max-w-md mx-auto bg-white border-t border-[#f0e3b6] px-1.5 py-2.5 shadow-[0_-4px_20px_rgba(0,0,0,0.06)] rounded-t-3xl">
+      <div className="flex items-center">
         {navItems.map((item) => {
           const Icon = item.icon;
           const isActive = item.href === '/' ? pathname === '/' : pathname.startsWith(item.href);
@@ -37,7 +38,7 @@ export default function BottomNav() {
               key={item.label}
               href={item.href}
               prefetch={true}
-              className={`flex flex-col items-center justify-center transition-all duration-150 relative active:scale-95 ${
+              className={`flex-1 min-w-0 flex flex-col items-center justify-center transition-all duration-150 relative active:scale-95 ${
                 isActive ? 'text-[#FF5722] font-semibold scale-105' : 'text-[#757575] hover:text-[#1A1A1A]'
               }`}
             >
@@ -49,7 +50,7 @@ export default function BottomNav() {
                   </span>
                 ) : null}
               </div>
-              <span className="text-[11px] mt-1 tracking-tight">{item.label}</span>
+              <span className="w-full text-center text-[9px] mt-1 tracking-tight truncate px-0.5">{item.label}</span>
             </Link>
           );
         })}

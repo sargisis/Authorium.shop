@@ -27,6 +27,15 @@ body {
   overflow-x: hidden;
 }
 
+.store-frame {
+  width: min(100%, 28rem);
+  margin-inline: auto;
+}
+
+.desktop-header {
+  display: none;
+}
+
 /* Fix: iOS zooms when input font-size < 16px — force all inputs to 16px */
 input,
 select,
@@ -64,4 +73,133 @@ textarea {
 .no-scrollbar {
   -ms-overflow-style: none;
   scrollbar-width: none;
+}
+
+@media (min-width: 1024px) {
+  body {
+    background-color: #f1f2ef;
+    user-select: text;
+  }
+
+  .store-frame {
+    width: 100%;
+    max-width: 1440px;
+    background: #f7f8f5;
+    box-shadow: none;
+  }
+
+  .desktop-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    display: grid;
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    min-height: 76px;
+    padding: 0 40px;
+    background: rgba(255, 255, 255, 0.96);
+    border-bottom: 1px solid #e7e7e1;
+    backdrop-filter: blur(12px);
+  }
+
+  .desktop-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    width: fit-content;
+    color: #201d16;
+    font-size: 18px;
+    font-weight: 800;
+  }
+
+  .desktop-brand img {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    object-fit: cover;
+  }
+
+  .desktop-nav-links,
+  .desktop-nav-actions {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+  }
+
+  .desktop-nav-links a {
+    color: #57554f;
+    font-size: 14px;
+    font-weight: 650;
+    transition: color 150ms ease;
+  }
+
+  .desktop-nav-links a:hover,
+  .desktop-nav-links a[aria-current='page'] {
+    color: #db4b20;
+  }
+
+  .desktop-nav-actions {
+    justify-content: flex-end;
+    gap: 12px;
+  }
+
+  .desktop-nav-action {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    min-height: 42px;
+    padding: 0 14px;
+    color: #29261f;
+    font-size: 13px;
+    font-weight: 700;
+    border: 1px solid #e5e3dc;
+    border-radius: 8px;
+    background: white;
+  }
+
+  .desktop-nav-action-primary {
+    color: #fff;
+    border-color: #e9522c;
+    background: #e9522c;
+  }
+
+  .desktop-nav-action-primary:hover {
+    background: #d8421e;
+  }
+
+  .store-content {
+    width: 100%;
+    max-width: 1360px;
+    margin-inline: auto;
+    padding: 28px 40px 56px;
+  }
+
+  .store-content > * {
+    width: 100%;
+    max-width: 1280px;
+    min-height: auto !important;
+    margin-inline: auto;
+    background-color: transparent !important;
+  }
+
+  .mobile-home-header,
+  .bottom-nav {
+    display: none !important;
+  }
+
+  .home-main {
+    gap: 32px;
+  }
+
+  .desktop-book-card {
+    width: 100%;
+    min-width: 0;
+  }
+
+  .carousel-swipe {
+    gap: 18px;
+    padding: 4px 0 12px;
+    margin-inline: 0;
+  }
 }

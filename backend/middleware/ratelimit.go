@@ -125,12 +125,19 @@ func AdminAuthMiddleware(next http.HandlerFunc) http.HandlerFunc {
 			return auth.JwtSecretKey, nil
 		})
 
-		if err != nil || !token.Valid {
+		if err != nil || token == nil || !token.Valid {
 			w.Header().Set("Content-Type", "application/json; charset=utf-8")
 			w.WriteHeader(http.StatusUnauthorized)
 			_ = json.NewEncoder(w).Encode(map[string]string{
 				"error": "Սեսիան ավարտվել է կամ անվավեր է: Խնդրում ենք կրկին մուտք գործել:",
 			})
+			return
+		}
+		claims, claimsOK := token.Claims.(*auth.Claims)
+		if !claimsOK || claims.TokenType != "admin" {
+			w.Header().Set("Content-Type", "application/json; charset=utf-8")
+			w.WriteHeader(http.StatusUnauthorized)
+			_ = json.NewEncoder(w).Encode(map[string]string{"error": "Unauthorized"})
 			return
 		}
 

@@ -19,7 +19,7 @@ export default function BookCard({ book, size = 'normal' }: BookCardProps) {
   return (
     <div
       className={`bg-white rounded-3xl p-3 shadow-[0_4px_15px_rgba(0,0,0,0.05)] border border-[#ffea9f] flex flex-col justify-between transition-all hover:scale-[1.02] ${
-        size === 'compact' ? 'w-36 min-w-[9rem]' : 'w-44 min-w-[11rem]'
+        size === 'compact' ? 'w-36 min-w-[9rem] desktop-book-card' : 'w-44 min-w-[11rem] desktop-book-card'
       }`}
     >
       <div className="relative w-full aspect-[3/4] rounded-2xl overflow-hidden bg-stone-100 shadow-inner group">

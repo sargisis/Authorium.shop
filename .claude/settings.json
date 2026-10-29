@@ -1,0 +1,9 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(node text_reader_test.js)",
+      "Bash(node -e ' *)",
+      "Bash(node chapter_test.js)"
+    ]
+  }
+}

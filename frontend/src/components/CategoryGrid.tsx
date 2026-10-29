@@ -119,7 +119,7 @@ export default function CategoryGrid({ categories, selectedId, onSelect }: Categ
   ];
 
   return (
-    <div className="grid grid-cols-2 gap-3.5 relative">
+    <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-4 gap-3.5 relative">
       {displayCats.map((cat) => {
         const style = categoryStyles[cat.id] || categoryStyles[1];
         const Icon = style.icon;

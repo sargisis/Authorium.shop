@@ -17,6 +17,7 @@ export default function BookDetailPage({ params }: { params: Promise<{ id: strin
   );
   const [loading, setLoading] = useState<boolean>(() => !INITIAL_BOOKS.some((b) => b.id === bookId));
   const [added, setAdded] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const addToCart = useCartStore((s) => s.addToCart);
   const { isFavorite, toggleFavorite } = useFavoritesStore();
@@ -51,8 +52,6 @@ export default function BookDetailPage({ params }: { params: Promise<{ id: strin
   const favorite = isFavorite(book.id);
   const purchased = isPurchased(book.id);
   const progress = getProgress(book.id);
-
-  const [copied, setCopied] = useState(false);
 
   const handleBuy = () => {
     addToCart(book);

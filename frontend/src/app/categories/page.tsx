@@ -116,7 +116,7 @@ export default function CategoriesPage({
               </button>
             </div>
 
-            <div className="grid grid-cols-2 gap-3">
+            <div className="grid grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
               {books.map((book) => (
                 <BookCard key={book.id} book={book} />
               ))}

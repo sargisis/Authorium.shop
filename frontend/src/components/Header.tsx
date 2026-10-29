@@ -16,7 +16,7 @@ export default function Header({ showBack, title }: HeaderProps) {
   const totalCount = useCartStore((s) => s.getTotalCount());
 
   return (
-    <header className="sticky top-0 z-40 px-4 py-2.5 flex items-center justify-between bg-[#FFC800]">
+    <header className="mobile-home-header sticky top-0 z-40 px-4 py-2.5 flex items-center justify-between bg-[#FFC800]">
       {/* Decorative Sparkle (Left) */}
       <div className="flex items-center gap-1 text-[#1A1A1A]">
         <svg className="w-5 h-5 fill-current text-[#1A1A1A]" viewBox="0 0 24 24">

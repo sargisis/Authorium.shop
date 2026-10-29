@@ -3,6 +3,7 @@ import Script from 'next/script';
 import './globals.css';
 import TelegramProvider from '@/components/TelegramProvider';
 import BottomNav from '@/components/BottomNav';
+import DesktopHeader from '@/components/DesktopHeader';
 
 export const metadata: Metadata = {
   title: 'Authorium.store — Telegram Book Store',
@@ -21,19 +22,7 @@ export default function RootLayout({
     <html lang="hy">
       <head>
         <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover" />
-        <script src="https://telegram.org/js/telegram-web-app.js"></script>
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `
-              try {
-                if (window.Telegram && window.Telegram.WebApp) {
-                  window.Telegram.WebApp.ready();
-                  window.Telegram.WebApp.expand();
-                }
-              } catch (e) {}
-            `,
-          }}
-        />
+        <Script src="https://telegram.org/js/telegram-web-app.js" strategy="beforeInteractive" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link rel="preconnect" href="https://fonts.gstatic.com" crossOrigin="" />
         <link
@@ -41,10 +30,11 @@ export default function RootLayout({
           rel="stylesheet"
         />
       </head>
-      <body className="bg-grid-pattern min-h-screen text-[#1A1A1A] antialiased">
+      <body className="min-h-screen text-[#1A1A1A] antialiased">
         <TelegramProvider>
-          <div className="max-w-md mx-auto min-h-screen relative flex flex-col shadow-2xl bg-[#FFC800]">
-            {children}
+          <div className="store-frame min-h-screen relative flex flex-col shadow-2xl bg-[#FFC800]">
+            <DesktopHeader />
+            <div className="store-content flex-1 flex flex-col">{children}</div>
             <BottomNav />
           </div>
         </TelegramProvider>
